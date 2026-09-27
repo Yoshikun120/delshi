@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#050505">
+<title>delshi.que — DLI STORE</title>
+<style>
+:root{--bg:#050505;--card:#101010;--line:#292929;--text:#f5f5f5;--muted:#999;--silver:#d8d8d8;--danger:#d84a4a}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 50% 0,#202020 0,#0a0a0a 35%,#030303 75%);color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}button,input,textarea{font:inherit}button{cursor:pointer}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.05;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:4px 4px}
+.topbar{position:fixed;z-index:20;top:0;left:0;right:0;height:62px;display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:linear-gradient(180deg,rgba(0,0,0,.9),rgba(0,0,0,0));}
+.iconbtn{width:42px;height:42px;border:1px solid #444;background:#111c;border-radius:50%;color:#fff;font-size:19px;backdrop-filter:blur(12px)}
+.brandmini{font-size:12px;letter-spacing:4px;color:#aaa}
+.hero{min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;padding:76px 20px 55px}
+.hero-inner{width:min(520px,100%)}.logo{width:min(330px,78vw);aspect-ratio:1;object-fit:contain;display:block;margin:0 auto 8px;filter:drop-shadow(0 15px 35px #000)}
+h1{font-family:Georgia,serif;font-size:clamp(38px,11vw,68px);letter-spacing:9px;margin:4px 0 13px;text-transform:lowercase}
+.subtitle{font-size:14px;line-height:1.9;color:#cfcfcf;max-width:430px;margin:0 auto 30px}
+.cta{border:1px solid #777;background:linear-gradient(135deg,#eee,#999);color:#080808;padding:15px 27px;border-radius:999px;font-weight:800;letter-spacing:.4px;box-shadow:0 8px 30px #000}
+.cta:active{transform:scale(.98)}
+.section{display:none;min-height:100svh;padding:78px 16px 35px;max-width:1100px;margin:auto}.section.active{display:block}
+.pagehead{text-align:center;margin-bottom:20px}.pagehead .logo{width:150px}.pagehead h2{font-family:Georgia,serif;letter-spacing:5px;margin:0 0 8px}.pagehead p{color:#aaa;font-size:13px;margin:0}
+.cats{display:flex;gap:9px;overflow-x:auto;padding:15px 2px 17px;scrollbar-width:none}.cats::-webkit-scrollbar{display:none}.cat{white-space:nowrap;border:1px solid #444;background:#0e0e0e;color:#ddd;border-radius:999px;padding:10px 17px}.cat.active{background:#eee;color:#080808;border-color:#eee}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.product{background:linear-gradient(180deg,#151515,#0b0b0b);border:1px solid #262626;border-radius:18px;overflow:hidden;position:relative}.pimg{width:100%;aspect-ratio:1/1.12;object-fit:cover;background:#171717}.pbody{padding:12px}.pname{font-weight:700;margin-bottom:5px}.desc{color:#888;font-size:12px;min-height:32px}.prices{display:flex;gap:8px;align-items:center;margin-top:8px}.price{font-weight:800}.old{text-decoration:line-through;color:#666;font-size:12px}.tag{position:absolute;top:9px;left:9px;background:#eee;color:#080808;padding:5px 8px;border-radius:999px;font-size:10px;font-weight:800}
+.empty{text-align:center;padding:50px 20px;color:#777;border:1px dashed #333;border-radius:18px;grid-column:1/-1}
+footer{text-align:center;color:#555;font-size:11px;letter-spacing:2px;padding:42px 0 28px}
+.order{position:fixed;z-index:18;left:14px;bottom:14px;border:1px solid #555;background:#111e;color:#fff;border-radius:999px;padding:12px 16px;backdrop-filter:blur(12px);box-shadow:0 8px 25px #000;font-size:12px}
+.music{position:fixed;z-index:19;right:14px;bottom:14px;width:42px;height:42px;border-radius:50%;border:1px solid #555;background:#111e;color:#fff}.music.on{box-shadow:0 0 18px #aaa}
+.drawer{position:fixed;z-index:30;inset:0;background:#0008;display:none}.drawer.open{display:block}.drawerbox{width:min(360px,88vw);height:100%;background:#0a0a0a;border-right:1px solid #333;padding:80px 22px 25px}.drawer h3{letter-spacing:3px}.drawer a,.drawer button{display:block;width:100%;text-align:left;padding:15px 0;border:0;border-bottom:1px solid #222;background:none;color:#ddd}.drawer .close{position:absolute;top:16px;left:18px;width:auto;border:0;font-size:24px}
+.admin{position:fixed;z-index:40;inset:0;background:#050505f5;display:none;overflow:auto;padding:74px 16px 40px}.admin.open{display:block}.adminbox{max-width:760px;margin:auto}.adminhead{display:flex;justify-content:space-between;align-items:center}.admin h2{font-family:Georgia,serif;letter-spacing:4px}.panel{background:#101010;border:1px solid #292929;border-radius:18px;padding:16px;margin:12px 0}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{margin:8px 0}.field label{display:block;color:#999;font-size:11px;margin-bottom:5px}.field input,.field textarea,.field select{width:100%;background:#070707;border:1px solid #333;color:#fff;border-radius:10px;padding:11px}.field textarea{min-height:85px;resize:vertical}.adminbtn{border:1px solid #555;background:#eee;color:#080808;border-radius:10px;padding:10px 13px;font-weight:700}.adminbtn.dark{background:#171717;color:#eee}.adminbtn.danger{background:#321010;color:#ffb0b0;border-color:#663333}.productrow{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #222}.thumb{width:54px;height:54px;border-radius:10px;object-fit:cover;background:#222}.grow{flex:1}.small{font-size:11px;color:#777}.login{max-width:360px;margin:12vh auto}.login h2{text-align:center}.notice{color:#888;font-size:12px;line-height:1.6}
+@media(min-width:700px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.logo{width:370px}.section{padding-left:28px;padding-right:28px}}
+</style>
+</head>
+<body>
+<audio id="music" src="assets/music.mp3" loop preload="auto"></audio>
+
+<header class="topbar">
+  <button class="iconbtn" id="menuBtn" aria-label="เมนู">☰</button>
+  <div class="brandmini">DLI STORE</div>
+  <button class="iconbtn" id="adminBtn" aria-label="Admin">⌘</button>
+</header>
+
+<main>
+<section id="home" class="hero">
+  <div class="hero-inner">
+    <img class="logo" src="assets/logo.png" alt="DLI STORE">
+    <h1>delshi.que</h1>
+    <p class="subtitle">สินค้าที่จำหน่ายและรับพรีออเดอร์ภายในร้าน</p>
+    <button class="cta" id="shopBtn">คลิกเพื่อดูสินค้า</button>
+  </div>
+</section>
+
+<section id="shop" class="section">
+  <div class="pagehead">
+    <img class="logo" src="assets/logo.png" alt="DLI STORE">
+    <h2>delshi.que</h2>
+    <p>สินค้าที่จำหน่ายและรับพรีออเดอร์ภายในร้าน</p>
+  </div>
+  <div class="cats" id="cats"></div>
+  <div class="grid" id="products"></div>
+  <footer>สร้างโดย delshi.que</footer>
+</section>
+</main>
+
+<a class="order" href="https://www.instagram.com/delshi.que/" target="_blank" rel="noopener">สั่งซื้อสินค้ากด</a>
+<button class="music" id="musicBtn" title="เพลง">♫</button>
+
+<div class="drawer" id="drawer">
+  <div class="drawerbox">
+    <button class="close" id="closeDrawer">×</button>
+    <h3>MENU</h3>
+    <button data-go="home">หน้าแรก</button>
+    <button data-go="shop">สินค้าทั้งหมด</button>
+    <button id="drawerAdmin">เข้าสู่โหมด Admin</button>
+    <a href="https://www.instagram.com/delshi.que/" target="_blank" rel="noopener">Instagram · delshi.que</a>
+  </div>
+</div>
+
+<div class="admin" id="admin">
+  <div class="adminbox">
+    <div class="adminhead"><h2>ADMIN MODE</h2><button class="iconbtn" id="closeAdmin">×</button></div>
+    <div id="adminContent"></div>
+  </div>
+</div>
+
+<script>
+const DEFAULT = {
+  cats:["Essentials","Vlone","Bape","Stussy"],
+  products:[
+    {id:1,cat:"Essentials",name:"Example Tee",price:1690,old:"",desc:"ตัวอย่างสินค้า — แก้ไขได้จาก Admin",image:"assets/logo.png",pre:true},
+    {id:2,cat:"Vlone",name:"Example Hoodie",price:2490,old:"",desc:"ตัวอย่างสินค้า — เพิ่มรูปและรายละเอียดของร้านได้",image:"assets/logo.png",pre:true}
+  ]
+};
+const KEY="delshi_store_v1";
+let data=JSON.parse(localStorage.getItem(KEY)||"null")||DEFAULT;
+let activeCat="ทั้งหมด";
+const $=s=>document.querySelector(s);
+function save(){localStorage.setItem(KEY,JSON.stringify(data));render();renderAdmin();}
+function money(n){return Number(n||0).toLocaleString("th-TH")+" ฿"}
+function render(){
+  const cats=$("#cats"); cats.innerHTML="";
+  ["ทั้งหมด",...data.cats].forEach(c=>{const b=document.createElement("button");b.className="cat"+(activeCat===c?" active":"");b.textContent=c;b.onclick=()=>{activeCat=c;render()};cats.appendChild(b)});
+  const list=$("#products");list.innerHTML="";
+  const arr=activeCat==="ทั้งหมด"?data.products:data.products.filter(p=>p.cat===activeCat);
+  if(!arr.length){list.innerHTML='<div class="empty">ยังไม่มีสินค้าในหมวดนี้</div>';return}
+  arr.forEach(p=>{
+    const el=document.createElement("article");el.className="product";
+    el.innerHTML=`${p.pre?'<span class="tag">PRE-ORDER</span>':''}<img class="pimg" src="${p.image||"assets/logo.png"}" alt=""><div class="pbody"><div class="pname">${esc(p.name)}</div><div class="desc">${esc(p.desc)}</div><div class="prices"><span class="price">${money(p.price)}</span>${p.old?`<span class="old">${money(p.old)}</span>`:""}</div></div>`;
+    list.appendChild(el);
+  });
+}
+function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function go(id){document.querySelectorAll(".hero,.section").forEach(x=>x.classList.remove("active"));$("#"+id).classList.add("active");window.scrollTo(0,0)}
+$("#shopBtn").onclick=()=>{startMusic();go("shop")};
+$("#menuBtn").onclick=()=>$("#drawer").classList.add("open");
+$("#closeDrawer").onclick=()=>$("#drawer").classList.remove("open");
+document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>{$("#drawer").classList.remove("open");go(b.dataset.go)});
+function startMusic(){const a=$("#music");a.play().then(()=>$("#musicBtn").classList.add("on")).catch(()=>{})}
+$("#musicBtn").onclick=()=>{const a=$("#music");if(a.paused){a.play();$("#musicBtn").classList.add("on")}else{a.pause();$("#musicBtn").classList.remove("on")}};
+document.addEventListener("pointerdown",()=>{if($("#home").classList.contains("active"))startMusic()},{once:true});
+
+function adminLogin(){
+  const pass=prompt("ใส่รหัส Admin");
+  if(pass==="delshi.que"){renderAdmin();$("#admin").classList.add("open")}else if(pass!==null)alert("รหัสไม่ถูกต้อง");
+}
+$("#adminBtn").onclick=adminLogin;$("#drawerAdmin").onclick=()=>{adminLogin();$("#drawer").classList.remove("open")};$("#closeAdmin").onclick=()=>$("#admin").classList.remove("open");
+
+function renderAdmin(){
+ const box=$("#adminContent");
+ box.innerHTML=`<div class="panel"><div class="notice">แก้ไขข้อมูลจากเว็บนี้ได้ทันที ข้อมูลจะถูกบันทึกไว้ในเบราว์เซอร์เครื่องนี้</div></div>
+ <div class="panel"><h3>หมวดหมู่</h3><div class="row"><div class="field"><label>ชื่อหมวดหมู่ใหม่</label><input id="newCat" placeholder="เช่น Nike"></div><div style="display:flex;align-items:end"><button class="adminbtn" id="addCat">+ เพิ่มหมวดหมู่</button></div></div><div id="catList"></div></div>
+ <div class="panel"><h3>เพิ่มสินค้า</h3><div class="row">
+ <div class="field"><label>ชื่อสินค้า</label><input id="pn" placeholder="ชื่อสินค้า"></div>
+ <div class="field"><label>หมวดหมู่</label><select id="pc"></select></div>
+ <div class="field"><label>ราคา</label><input id="pp" type="number" placeholder="1690"></div>
+ <div class="field"><label>ราคาก่อนลด (เว้นว่างได้)</label><input id="po" type="number"></div>
+ </div><div class="field"><label>รายละเอียด</label><textarea id="pd" placeholder="รายละเอียดสินค้า"></textarea></div>
+ <div class="field"><label>รูปสินค้า</label><input id="pi" type="file" accept="image/*"></div>
+ <label style="display:block;margin:10px 0"><input id="pre" type="checkbox" checked> เปิดสถานะ PRE-ORDER</label>
+ <button class="adminbtn" id="addProduct">+ เพิ่มสินค้า</button></div>
+ <div class="panel"><h3>สินค้าทั้งหมด</h3><div id="productList"></div></div>
+ <div class="panel"><button class="adminbtn danger" id="reset">รีเซ็ตข้อมูลตัวอย่าง</button></div>`;
+ const sel=$("#pc");sel.innerHTML=data.cats.map(c=>`<option>${esc(c)}</option>`).join("");
+ $("#addCat").onclick=()=>{let n=$("#newCat").value.trim();if(n&&!data.cats.includes(n)){data.cats.push(n);save()}};
+ $("#addProduct").onclick=addProduct;
+ $("#reset").onclick=()=>{if(confirm("รีเซ็ตข้อมูลทั้งหมดกลับเป็นค่าเริ่มต้น?")){data=JSON.parse(JSON.stringify(DEFAULT));save()}};
+ renderAdminLists();
+}
+function renderAdminLists(){
+ const cl=$("#catList"); if(!cl)return;
+ cl.innerHTML=data.cats.map((c,i)=>`<div class="productrow"><div class="grow">${esc(c)}</div><button class="adminbtn danger" onclick="removeCat(${i})">ลบ</button></div>`).join("");
+ const pl=$("#productList");pl.innerHTML=data.products.map(p=>`<div class="productrow"><img class="thumb" src="${p.image||"assets/logo.png"}"><div class="grow"><b>${esc(p.name)}</b><div class="small">${esc(p.cat)} · ${money(p.price)} ${p.old?"/ ลดจาก "+money(p.old):""}</div></div><button class="adminbtn dark" onclick="editProduct(${p.id})">แก้ไข</button><button class="adminbtn danger" onclick="removeProduct(${p.id})">ลบ</button></div>`).join("")||'<div class="small">ยังไม่มีสินค้า</div>';
+}
+window.removeCat=i=>{if(confirm("ลบหมวดหมู่นี้? สินค้าในหมวดจะยังอยู่")){data.cats.splice(i,1);save()}};
+window.removeProduct=id=>{if(confirm("ลบสินค้านี้?")){data.products=data.products.filter(p=>p.id!==id);save()}};
+window.editProduct=id=>{
+ const p=data.products.find(x=>x.id===id); if(!p)return;
+ const n=prompt("ชื่อสินค้า",p.name);if(n===null)return;
+ const price=prompt("ราคา",p.price);const old=prompt("ราคาก่อนลด (เว้นว่างได้)",p.old||"");const desc=prompt("รายละเอียด",p.desc);
+ p.name=n;p.price=Number(price)||0;p.old=old?Number(old):"";p.desc=desc??p.desc;save();
+};
+async function addProduct(){
+ const f=$("#pi").files[0];let image="assets/logo.png";
+ if(f){image=await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(f)})}
+ data.products.push({id:Date.now(),cat:$("#pc").value,name:$("#pn").value.trim()||"สินค้าใหม่",price:Number($("#pp").value)||0,old:$("#po").value?Number($("#po").value):"",desc:$("#pd").value.trim(),image,pre:$("#pre").checked});
+ save();
+}
+render();go("home");
+</script>
+</body>
+</html>
